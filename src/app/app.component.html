@@ -1,3 +1,37 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <img class="logo" src="https://www.kwickie.com/wp-content/uploads/2015/12/logo.png" />
+  <div id="feed">
+    <ul>
+      <li *ngFor="let item of kwickFeed" [value]="item">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="post-container">
+              <div class="post-body">
+                <div class="post-answer-user">
+                  <div class="answer-avatar"><img src="{{item.answerUser.profilePicturePath}}" /></div><h3 class="name">{{item.answerUser.firstName}} {{item.answerUser.lastName}}</h3><span class="verified">(Answered a Question)</span>
+                </div>
+                <div class="post-answer-video">
+
+                  <div class="video">
+                    <video class="kvideo" preload="none" controls (click)="toggleVideo()" #videoPlayer>
+                      <source src="{{item.kwickieVideo.lowQualityUrl}}" type="video/mp4" />
+                      Browser not supported
+                    </video>
+                  </div>
+
+                </div>
+                <div class="post-question-user">
+                  <div class="question-avatar"><img src="{{item.questionUser.profilePicturePath}}" /></div><h3 class="name">{{item.questionUser.firstName}} {{item.questionUser.lastName}}</h3><span class="verified">(Asked the Question)</span>
+                </div>
+                <div class="post-published"><p>{{item.publishDate | date}}</p></div>
+                <div class="post-likes">likes ({{item.likesCount}})</div>
+                <div class="post-likes">comments ({{item.kwickieCommentProperties.commentsCount}})</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
